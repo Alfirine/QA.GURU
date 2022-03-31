@@ -1,0 +1,13 @@
+*.iml
+.idea
+build/
+allure-results/
+.allure
+debug.log
+/logs
+# mvn target folder
+target/
+gradle/
+gradlew
+gradle.properties
+gradlew.bat

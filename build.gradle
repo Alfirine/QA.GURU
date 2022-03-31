@@ -1,0 +1,86 @@
+plugins {
+    id 'java'
+    id "io.qameta.allure" version "2.9.6"
+    id "io.freefair.lombok" version "6.0.0-m2"
+}
+
+repositories {
+    mavenCentral()
+}
+
+group = 'test'
+description = 'qa.guru'
+java.sourceCompatibility = JavaVersion.VERSION_11
+
+def allureVersion = "2.17.3",
+    selenideVersion = "6.3.5",
+    junitVersion = "5.8.2",
+    jsonSimpleVersion = "1.1.1",
+    jacksonVersion = "2.13.1",
+    ownerVersion = "1.0.12",
+    slfjVersion = "1.7.29",
+    restAssuredVersion = "4.5.0"
+
+allure {
+    adapter {
+        aspectjWeaver.set(true)
+        aspectjVersion.set("1.9.8")
+        frameworks {
+            junit5 {
+                adapterVersion.set(allureVersion)
+            }
+        }
+    }
+    report {
+        version.set(allureVersion)
+    }
+}
+
+dependencies {
+    testImplementation(
+            "com.codeborne:selenide:$selenideVersion",
+            "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion",
+            "com.googlecode.json-simple:json-simple:$jsonSimpleVersion",
+            "io.qameta.allure:allure-selenide:$allureVersion",
+            "io.rest-assured:rest-assured:$restAssuredVersion",
+            "org.aeonbits.owner:owner:$ownerVersion",
+            "org.slf4j:slf4j-simple:$slfjVersion",
+            "org.junit.jupiter:junit-jupiter:$junitVersion"
+    )
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+tasks.withType(Test) {
+    systemProperties(System.getProperties())
+    useJUnitPlatform()
+    systemProperty "file.encoding", "UTF-8"
+    System.setProperty("junit.jupiter.extensions.autodetection.enabled", "true")
+//    System.setProperty("threads", "5")
+    if (System.getProperty("threads") != null) {
+        systemProperties += [
+                'junit.jupiter.execution.parallel.enabled'                 : true,
+                'junit.jupiter.execution.parallel.mode.default'            : 'concurrent',
+                'junit.jupiter.execution.parallel.mode.classes.default'    : 'concurrent',
+                'junit.jupiter.execution.parallel.config.strategy'         : 'fixed',
+                'junit.jupiter.execution.parallel.config.fixed.parallelism': System.getProperty("threads").toInteger()
+        ]
+    }
+
+    testLogging {
+        lifecycle {
+            events "started", "skipped", "failed", "standard_error", "standard_out"
+            exceptionFormat "short"
+        }
+    }
+}
+task regress(type: Test) {
+    systemProperty "file.encoding", "UTF-8"
+    useJUnitPlatform {
+        includeTags 'Regress'
+    }
+}
+
+
