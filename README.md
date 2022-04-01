@@ -5,9 +5,9 @@
 </a>
 </p>
 
-# QA.GURU. Graduate work. Tests for webinar.ru :star:
+# QA.GURU. Дипломная работа. Тесты для webinar.ru :star:
 
-## UI Tests with API preconditions
+## UI тесты с API предусловиями
 :white_check_mark: Add single tag to course     
 :white_check_mark: Add multiple tags to course     
 :white_check_mark: Delete tags in course    
@@ -39,8 +39,6 @@
 <code><img width="5%" title="Jenkins" src="images/jenkins-logo.svg"></code>
 <code><img width="5%" title="Telegram" src="images/Telegram.svg"></code>
 </p>
-
-## For the tests to work, you must pass the api token parameter.
 
 ## :computer: Запуск тестов из терминала
 
