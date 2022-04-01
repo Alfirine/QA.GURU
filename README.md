@@ -118,7 +118,7 @@ Report*</strong></code>, кликнув по которому, откроетс�
 >- [x] <code><strong>*FEATURES BY STORIES*</strong></code> - отображает распределение тестов по функционалу, который они проверяют
 >- [x] <code><strong>*EXECUTORS*</strong></code> - отображает исполнителя текущей сборки (ссылка на сборку в Jenkins)
 
-<p align="center">
+<p align="left">
   <img src="images/allure_report.png" alt="allure_report" width="900">
 </p>
 
