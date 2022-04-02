@@ -1,6 +1,5 @@
 package pages;
 
-import api.LoginApi;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import models.User;
@@ -9,7 +8,7 @@ import static com.codeborne.selenide.Condition.value;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 
-public class SignInPage extends BasePage {
+public class SignInPage {
 
     private static final SelenideElement
             emailForm = $("[name='email']"),

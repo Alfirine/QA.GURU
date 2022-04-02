@@ -6,10 +6,10 @@ import io.qameta.allure.Step;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
-import static enums.localization.Course.SIGN_UP_TEXT;
+import static enums.localization.CourseBlock.SIGN_UP_TEXT;
 import static java.lang.String.format;
 
-public class CoursesPage extends BasePage {
+public class CoursesPage {
 
     private static final SelenideElement
             courseRoot = $("[class*='CourseInfo__root']"),

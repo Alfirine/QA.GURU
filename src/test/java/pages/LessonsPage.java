@@ -14,7 +14,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class LessonsPage extends BasePage {
+public class LessonsPage {
 
     private static final SelenideElement
             structureMenuBtn = $("[class*='leftHolder'] [class*='menuButton']");

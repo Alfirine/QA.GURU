@@ -12,7 +12,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Configuration.clickViaJs;
 import static com.codeborne.selenide.Selenide.*;
 
-public class CourseEditorPage extends BasePage {
+public class CourseEditorPage {
 
     private static final SelenideElement
             journalTab = $("div[class^='CourseInfoHeader__footer'] [href*='/journal']"),
