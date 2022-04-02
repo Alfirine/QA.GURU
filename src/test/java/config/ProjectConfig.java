@@ -44,6 +44,9 @@ public interface ProjectConfig extends Config {
     @DefaultValue("")
     String apiToken();
 
+    @DefaultValue("5")
+    String threads();
+
     @DefaultValue("15000")
     String timeoutElementWait();
 
