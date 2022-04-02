@@ -3,7 +3,7 @@ package enums;
 public enum Periodicity {
     ENDLESS, END;
 
-    public String getApiValue() {
+    public String toApi() {
         return name().toLowerCase();
     }
 }

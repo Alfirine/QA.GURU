@@ -3,7 +3,7 @@ package enums;
 public enum CourseTrajectory {
     CLOSE, OPEN;
 
-    public String getApiValue() {
+    public String toApi() {
         return name().toLowerCase();
     }
 }

@@ -1,6 +1,6 @@
 package enums.localization;
 
-public enum Course {
+public enum CourseBlock {
     REMINDERS_LETTER_TITLE("Напоминание о курсе"),
     REMINDERS_LETTER_TEXT("{first_name} {second_name}, напоминаем, что Вы приглашены на курс"),
     PART_NAME("Новая часть"),
@@ -13,7 +13,7 @@ public enum Course {
 
     private final String value;
 
-    Course(String value) {
+    CourseBlock(String value) {
         this.value = value;
     }
 
