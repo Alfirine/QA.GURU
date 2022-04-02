@@ -1,19 +1,10 @@
 package testdata.course;
 
-import api.CourseApi;
-import api.CourseInstanceApi;
-import helpers.CourseHelper;
 import models.User;
-import models.courseResponse.CourseResponseData;
-import models.courseSettings.CourseData;
-import models.createCourse.CreateCourseData;
 
-import java.util.List;
 import java.util.Objects;
 
-import static enums.Periodicity.END;
-
-public final class NewCourse {
+public class NewCourse {
     private final User user;
 
     NewCourse(User user) {
@@ -41,33 +32,5 @@ public final class NewCourse {
     public String toString() {
         return "NewCourse[" +
                 "user=" + user + ']';
-    }
-
-    public CourseData getDefaultUnpublishedCourse() {
-        CreateCourseData defaultCreateCourseData = new CreateCourseData();
-        CourseResponseData courseResponseData = CourseInstanceApi.createCourse(user, defaultCreateCourseData);
-        int courseId = courseResponseData.getCourseInstance().getCourse().getId();
-        return new CourseData(user, courseId);
-    }
-
-    public CourseData getDefaultCourse() {
-        CourseData courseData = getDefaultUnpublishedCourse();
-        CourseApi.publishCourse(user, courseData);
-        return courseData;
-    }
-
-    public CourseData getCourseWithTags(List<String> tags) {
-        CourseData courseData = getDefaultCourse();
-        courseData.setAutoAssignmentSettingTags(tags);
-        courseData = CourseApi.courseSettings(user, courseData);
-        return courseData;
-    }
-
-    public CourseData getCourseWithTwoGroups() {
-        CourseData courseData = getDefaultCourse();
-        courseData.setCourseInstances(CourseHelper.getCourseInstancesWithGroups(2));
-        courseData.getCourse().setPeriodicity(END.getApiValue());
-        courseData = CourseApi.courseSettings(user, courseData);
-        return courseData;
     }
 }
