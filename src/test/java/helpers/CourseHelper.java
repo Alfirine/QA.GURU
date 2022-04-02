@@ -1,12 +1,8 @@
 package helpers;
 
-import api.CourseApi;
 import config.Project;
-import models.User;
 import models.courseResponse.CourseInstance;
 import models.courseSettings.CourseData;
-import models.lessons.LessonInPart;
-import models.lessons.Part;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
@@ -34,21 +30,6 @@ public class CourseHelper {
 
     public static String getPartUrl(CourseData courseData, Integer partId) {
         return String.format("/course/%s/part/%s", courseData.getCourse().getId(), partId);
-    }
-
-    public static LessonInPart getLesson(User user, CourseData courseData, String lessonName) {
-        return CourseApi.getParts(user, courseData).stream()
-                .flatMap(part -> part.getLessonList().stream())
-                .filter(lesson -> lesson.getName().equals(lessonName))
-                .findFirst()
-                .orElse(null);
-    }
-
-    public static Part getPart(User user, CourseData courseData, String partName) {
-        return CourseApi.getParts(user, courseData).stream()
-                .filter(part -> part.getName().equals(partName))
-                .findFirst()
-                .orElse(null);
     }
 
     public static List<CourseInstance> getCourseInstancesWithGroups(int numberOfGroups) {
