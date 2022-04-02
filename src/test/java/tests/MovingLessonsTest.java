@@ -2,6 +2,7 @@ package tests;
 
 import api.CourseApi;
 import api.LessonApi;
+import clients.CourseClient;
 import com.google.common.collect.Lists;
 import helpers.CourseHelper;
 import io.qameta.allure.AllureId;
@@ -12,20 +13,20 @@ import models.courseSettings.CourseData;
 import models.createLesson.CreateLesson;
 import models.createPart.CreatePartData;
 import models.lessons.Part;
-import pages.LessonsPage;
-import pages.SignInPage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
-import testdata.course.CourseProvider;
+import pages.LessonsPage;
+import pages.SignInPage;
+import testdata.course.CourseDataProvider;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.codeborne.selenide.Selenide.open;
-import static enums.localization.Course.LESSON_NAME;
-import static enums.localization.Course.PART_NAME;
+import static enums.localization.CourseBlock.LESSON_NAME;
+import static enums.localization.CourseBlock.PART_NAME;
 import static testdata.UserProvider.getNewUser;
 
 @Tags({@Tag("Box"), @Tag("Regress"), @Tag("Independent")})
@@ -43,7 +44,7 @@ public class MovingLessonsTest extends BaseTest {
     public void setUp() {
         admin = getNewUser();
 
-        courseData = CourseProvider.createCourse(admin).getDefaultCourse();
+        courseData = CourseDataProvider.getDefaultCourse(admin);
 
         CreatePartData createPartData = new CreatePartData(partName);
         coursePartId = CourseApi.createPart(admin, courseData, createPartData).getId();
@@ -76,7 +77,7 @@ public class MovingLessonsTest extends BaseTest {
     @AllureId("169")
     @Epic("Перемещение уроков в курсе")
     public void checkingMovementOfLessonsBetweenParts() {
-        int firstLessonId = CourseHelper.getLesson(admin, courseData, LESSON_NAME.getValue()).getId();
+        int firstLessonId = CourseClient.getLesson(admin, courseData, LESSON_NAME.getValue()).getId();
         String firstLessonUrl = CourseHelper.getEditLessonPath(courseData, firstLessonId);
 
         SignInPage.login(admin);
@@ -93,7 +94,7 @@ public class MovingLessonsTest extends BaseTest {
     @AllureId("187")
     @Epic("Перемещение уроков в курсе")
     public void checkingMovementOfParts() {
-        Part firstPart = CourseHelper.getPart(admin, courseData, PART_NAME.getValue());
+        Part firstPart = CourseClient.getPart(admin, courseData, PART_NAME.getValue());
         String firstPartUrl = CourseHelper.getPartUrl(courseData, firstPart.getId());
         String secondPartUrl = CourseHelper.getPartUrl(courseData, coursePartId);
 

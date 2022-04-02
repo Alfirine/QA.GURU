@@ -7,21 +7,21 @@ import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import models.User;
 import models.courseSettings.CourseData;
-import pages.CoursesPage;
-import pages.LessonsPage;
-import pages.SignInPage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
-import testdata.course.CourseProvider;
+import pages.CoursesPage;
+import pages.LessonsPage;
+import pages.SignInPage;
+import testdata.course.CourseDataProvider;
 
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.Locale;
 
 import static com.codeborne.selenide.Selenide.open;
-import static enums.localization.Course.*;
+import static enums.localization.CourseBlock.*;
 import static java.time.LocalDateTime.now;
 import static testdata.UserProvider.getNewStudent;
 import static testdata.UserProvider.getNewUser;
@@ -37,7 +37,7 @@ public class CourseByDatesTest extends BaseTest {
         User admin = getNewUser();
         User student = getNewStudent();
 
-        CourseData courseData = CourseProvider.createCourse(admin).getCourseWithTwoGroups();
+        CourseData courseData = CourseDataProvider.getCourseWithTwoGroups(admin);
         String courseUrl = CourseHelper.getCourseUrl(courseData);
 
         SignInPage.login(student);

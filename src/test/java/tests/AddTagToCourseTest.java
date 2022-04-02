@@ -8,14 +8,14 @@ import io.qameta.allure.Epic;
 import models.User;
 import models.courseSettings.CourseData;
 import models.users.Contacts;
-import pages.CourseEditorPage;
-import pages.SignInPage;
-import pages.blocks.AutoAssignSettingsModal;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
-import testdata.course.CourseProvider;
+import pages.CourseEditorPage;
+import pages.SignInPage;
+import pages.blocks.AutoAssignSettingsModal;
+import testdata.course.CourseDataProvider;
 
 import java.util.List;
 
@@ -43,7 +43,7 @@ public class AddTagToCourseTest extends BaseTest {
         student1 = getNewStudent();
         User student2 = getNewStudent();
 
-        courseData = CourseProvider.createCourse(admin).getDefaultCourse();
+        courseData = CourseDataProvider.getDefaultCourse(admin);
         courseUrl = CourseHelper.getCourseUrl(courseData);
         journalUrl = CourseHelper.getJournalUrl(courseData);
 
@@ -83,7 +83,7 @@ public class AddTagToCourseTest extends BaseTest {
     @Epic("Автоназначение курса по тегам")
     public void addMultipleTagsToCourse() {
         UsersApi.addContacts(admin, student1, tags);
-        CourseProvider.editCourse(admin, courseData).changeToCourseWithOneGroupWithTags(List.of(tag1Id, tag2Id));
+        CourseDataProvider.changeToCourseWithOneGroupWithTags(admin, courseData, List.of(tag1Id, tag2Id));
 
         SignInPage.login(admin);
         open(journalUrl);
@@ -95,7 +95,7 @@ public class AddTagToCourseTest extends BaseTest {
     @AllureId("324")
     @Epic("Автоназначение курса по тегам")
     public void addTagToStudent() {
-        CourseProvider.editCourse(admin, courseData).changeToCourseWithOneGroupWithTags(List.of(tag1Id));
+        CourseDataProvider.changeToCourseWithOneGroupWithTags(admin, courseData, List.of(tag1Id));
         UsersApi.addContacts(admin, student1, tag);
 
         SignInPage.login(admin);
@@ -108,7 +108,7 @@ public class AddTagToCourseTest extends BaseTest {
     @AllureId("209")
     @Epic("Автоназначение курса по тегам")
     public void addMultipleTagsToStudent() {
-        CourseProvider.editCourse(admin, courseData).changeToCourseWithOneGroupWithTags(List.of(tag1Id, tag2Id));
+        CourseDataProvider.changeToCourseWithOneGroupWithTags(admin, courseData, List.of(tag1Id, tag2Id));
         UsersApi.addContacts(admin, student1, tags);
 
         SignInPage.login(admin);

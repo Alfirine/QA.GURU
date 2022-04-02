@@ -8,14 +8,14 @@ import io.qameta.allure.Epic;
 import models.User;
 import models.courseSettings.CourseData;
 import models.users.Contacts;
-import pages.CourseEditorPage;
-import pages.SignInPage;
-import pages.blocks.AutoAssignSettingsModal;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
-import testdata.course.CourseProvider;
+import pages.CourseEditorPage;
+import pages.SignInPage;
+import pages.blocks.AutoAssignSettingsModal;
+import testdata.course.CourseDataProvider;
 
 import java.util.List;
 
@@ -47,8 +47,8 @@ public class DeleteTagForMultipleTagsCourseTest extends BaseTest {
         contactStudent = UsersApi.addContacts(admin, student, tags);
         String tag1Id = contactStudent.getTags().get(0).getId();
         String tag2Id = contactStudent.getTags().get(1).getId();
+        CourseData courseData = CourseDataProvider.getCourseWithTags(admin, List.of(tag1Id, tag2Id));
 
-        CourseData courseData = CourseProvider.createCourse(admin).getCourseWithTags(List.of(tag1Id, tag2Id));
         courseUrl = CourseHelper.getCourseUrl(courseData);
         journalUrl = CourseHelper.getJournalUrl(courseData);
     }
