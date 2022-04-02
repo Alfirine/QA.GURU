@@ -2,7 +2,7 @@ package models.createLesson;
 
 import lombok.Data;
 
-import static enums.localization.Course.LESSON_NAME;
+import static enums.localization.CourseBlock.LESSON_NAME;
 
 @Data
 public class CreateLesson {
@@ -16,7 +16,4 @@ public class CreateLesson {
         this.name = name;
     }
 
-    public CreateLesson(Integer coursePartId) {
-        this.coursePartId = coursePartId;
-    }
 }

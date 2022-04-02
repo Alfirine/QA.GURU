@@ -2,7 +2,7 @@ package models;
 
 import lombok.Data;
 
-import static enums.localization.Course.LESSON_NAME;
+import static enums.localization.CourseBlock.LESSON_NAME;
 
 @Data
 public class Lesson {

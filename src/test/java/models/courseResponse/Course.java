@@ -5,7 +5,7 @@ import lombok.Data;
 
 import static enums.CourseTrajectory.CLOSE;
 import static enums.Periodicity.ENDLESS;
-import static enums.localization.Course.COURSE_NAME;
+import static enums.localization.CourseBlock.COURSE_NAME;
 import static helpers.TimeGenerateHelper.getCurrentTime;
 
 @Data
@@ -13,11 +13,11 @@ import static helpers.TimeGenerateHelper.getCurrentTime;
 public class Course {
     private String visibilityStatus = "all";
     private String description;
-    private String trajectory = CLOSE.getApiValue();
+    private String trajectory = CLOSE.toApi();
     private String passingScore = "0.00";
     private String certSetting;
     private String urlAlias;
-    private String periodicity = ENDLESS.getApiValue();
+    private String periodicity = ENDLESS.toApi();
     private Integer access;
     private String background;
     private User user;
