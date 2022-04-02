@@ -61,12 +61,12 @@ gradle clean test
 ```
 
 где:
->- [x] *Dbrowser - браузер, в котором будут выполняться тесты (по умолчанию chrome)*
->- [x] *DbrowserVersion - версия браузера (по умолчанию 91.0)*
->- [x] *DbrowserSize - размер окна браузера (по умолчанию 1920x1080)*
->- [x] *DremoteDriverUrl - адрес удаленного сервера, где будут выполняться тесты (по умолчанию http://selenoid.autotests.cloud/wd/hub/)*
->- [x] *Dthreads - количество потоков выполняющихся тестов*
->- [x] *DapiToken - токен, для доступа к API*
+>- [x] *-Dbrowser - браузер, в котором будут выполняться тесты (по умолчанию chrome)*
+>- [x] *-DbrowserVersion - версия браузера (по умолчанию 91.0)*
+>- [x] *-DbrowserSize - размер окна браузера (по умолчанию 1920x1080)*
+>- [x] *-DremoteDriverUrl - адрес удаленного сервера, где будут выполняться тесты (по умолчанию http://selenoid.autotests.cloud/wd/hub/)*
+>- [x] *-Dthreads - количество потоков выполняющихся тестов*
+>- [x] *-DapiToken - токен, для доступа к API*
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:green_circle:&nbsp;&nbsp;*Запуск тестов в несколько потоков:*
 
