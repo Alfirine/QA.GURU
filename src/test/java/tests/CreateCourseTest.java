@@ -3,14 +3,14 @@ package tests;
 import io.qameta.allure.AllureId;
 import io.qameta.allure.Epic;
 import models.User;
-import pages.CoursesPage;
-import pages.QualificationPage;
-import pages.RibbonPage;
-import pages.SignInPage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
+import pages.CoursesPage;
+import pages.QualificationPage;
+import pages.RibbonPage;
+import pages.SignInPage;
 
 import static testdata.UserProvider.getNewUser;
 
