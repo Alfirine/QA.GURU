@@ -56,9 +56,9 @@ tasks.withType(JavaCompile) {
 tasks.withType(Test) {
     systemProperties(System.getProperties())
     useJUnitPlatform()
+//    System.setProperty("threads", "5")
     systemProperty "file.encoding", "UTF-8"
     System.setProperty("junit.jupiter.extensions.autodetection.enabled", "true")
-//    System.setProperty("threads", "5")
     if (System.getProperty("threads") != null) {
         systemProperties += [
                 'junit.jupiter.execution.parallel.enabled'                 : true,

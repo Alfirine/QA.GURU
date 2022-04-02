@@ -1,8 +1,11 @@
 package api.endpoints;
 
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
-public enum CourseUrls {
+@RequiredArgsConstructor
+@Getter
+public enum CourseEndpoints {
     CREATE_BY_TEMPLATE("/course/createByTemplate/%d"),
     COURSE_REMINDERS("/courses/%s/reminders"),
     COURSE_SETTING("/courses/sync"),
@@ -30,10 +33,7 @@ public enum CourseUrls {
     COURSE_ATTACHMENTS("/courses/%s/attachments"),
     COURSE_INSTANCES("/courses/%s/courseInstances/active");
 
-    @Getter
-    private final String url;
+    private final String path;
 
-    CourseUrls(String url) {
-        this.url = url;
-    }
+
 }

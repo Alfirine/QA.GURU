@@ -12,7 +12,7 @@ import models.lessons.Part;
 
 import java.util.List;
 
-import static api.endpoints.CourseUrls.*;
+import static api.endpoints.CourseEndpoints.*;
 import static io.restassured.RestAssured.given;
 import static java.lang.String.format;
 import static org.apache.http.HttpStatus.SC_NO_CONTENT;
@@ -23,7 +23,7 @@ public class CourseApi {
     public static List<Reminder> getReminders(User user, int courseId) {
         return given()
                 .spec(SpecHelper.getRequestSpecWithoutBody(user.getSessionId()))
-                .get(format(COURSE_REMINDERS.getUrl(), courseId))
+                .get(format(COURSE_REMINDERS.getPath(), courseId))
                 .then()
                 .spec(SpecHelper.getResponseSpec(SC_OK))
                 .extract()
@@ -35,7 +35,7 @@ public class CourseApi {
                 .spec(SpecHelper.getRequestSpec(user.getSessionId()))
                 .when()
                 .body(courseData)
-                .post(COURSE_SETTING.getUrl())
+                .post(COURSE_SETTING.getPath())
                 .then()
                 .spec(SpecHelper.getResponseSpec(SC_OK))
                 .extract()
@@ -46,7 +46,7 @@ public class CourseApi {
         given()
                 .spec(SpecHelper.getRequestSpecWithoutBody(user.getSessionId()))
                 .when()
-                .patch(format(COURSE_PUBLISH.getUrl(), courseData.getCourse().getId()))
+                .patch(format(COURSE_PUBLISH.getPath(), courseData.getCourse().getId()))
                 .then()
                 .spec(SpecHelper.getResponseSpec(SC_NO_CONTENT));
     }
@@ -55,7 +55,7 @@ public class CourseApi {
         return given()
                 .spec(SpecHelper.getRequestSpecWithoutBody(user.getSessionId()))
                 .when()
-                .get(format(COURSE.getUrl(), courseId))
+                .get(format(COURSE.getPath(), courseId))
                 .then()
                 .spec(SpecHelper.getResponseSpec(SC_OK))
                 .extract()
@@ -66,7 +66,7 @@ public class CourseApi {
         return given()
                 .spec(SpecHelper.getRequestSpecWithoutBody(user.getSessionId()))
                 .when()
-                .get(format(LESSONS.getUrl(), courseData.getCourse().getId()))
+                .get(format(LESSONS.getPath(), courseData.getCourse().getId()))
                 .then()
                 .spec(SpecHelper.getResponseSpec(SC_OK))
                 .extract()
@@ -79,7 +79,7 @@ public class CourseApi {
                 .spec(SpecHelper.getRequestSpec(user.getSessionId()))
                 .when()
                 .body(createPartData)
-                .post(format(CREATE_PART.getUrl(), courseData.getCourse().getId()))
+                .post(format(CREATE_PART.getPath(), courseData.getCourse().getId()))
                 .then()
                 .spec(SpecHelper.getResponseSpec(SC_OK))
                 .extract()
@@ -90,7 +90,7 @@ public class CourseApi {
         return given()
                 .spec(SpecHelper.getRequestSpecWithoutBody(user.getSessionId()))
                 .when()
-                .get(format(COURSE_INSTANCES.getUrl(), courseId))
+                .get(format(COURSE_INSTANCES.getPath(), courseId))
                 .then()
                 .extract()
                 .as(new TypeRef<>() {});
